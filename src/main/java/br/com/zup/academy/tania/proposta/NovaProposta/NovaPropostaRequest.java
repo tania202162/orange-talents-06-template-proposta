@@ -17,7 +17,7 @@ public class NovaPropostaRequest {
 	@Column(nullable = false)
 	@NotBlank
 	@ValidaCpfCnpj
-	@UniqueValue(domainClass = NovaProposta.class, fieldName = "documento")
+    @UniqueValue(domainClass = NovaProposta.class, fieldName = "documento")
 	private String documento; // cpf/cnpj
 	
 	@Column(nullable = false)
@@ -38,6 +38,7 @@ public class NovaPropostaRequest {
 	@NotNull
 	@Positive
 	private BigDecimal salario;
+	
 	
 	public NovaPropostaRequest(@NotBlank String documento, @NotBlank String email, @NotBlank String nome,
 			@NotBlank String endereco, @NotNull BigDecimal salario) {

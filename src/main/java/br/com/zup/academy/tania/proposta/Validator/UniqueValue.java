@@ -10,15 +10,14 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 
 public @interface UniqueValue {
-
-	String message() default "Não permitido campo duplicado. Valor Inválido!";
-
+			
+	String message() default "Não é permitido campo duplicado! Reveja CPF/CNPJ ou Email!";
+	
+	String fieldName();		
+	
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
-
-	String fieldName();
-
+		
 	Class<?> domainClass();
-
 }

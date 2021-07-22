@@ -21,9 +21,10 @@ import org.hibernate.validator.constraints.br.CPF;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-
 public @interface ValidaCpfCnpj {
-    String message() default "CPF ou CNPJ invÃ¡lido!";
+	
+    String message() default "CPF ou CNPJ inválido!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+  
 }

@@ -14,13 +14,13 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 
     private Class<?> domainClass;
     private String fieldName;
-
+    
     @Override
     public void initialize(UniqueValue param) {
         domainClass = param.domainClass();
         fieldName = param.fieldName();
     }
-
+    
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
         Query query = entityManager.createQuery("select 1 from " + domainClass.getName() + " where "+ fieldName + "=:value");
