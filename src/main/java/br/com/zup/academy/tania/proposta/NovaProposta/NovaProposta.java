@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,7 @@ public class NovaProposta {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long idProposta;
 	
 	@Column(nullable = false)
 	@NotBlank
@@ -38,8 +40,11 @@ public class NovaProposta {
 	@NotNull
 	private BigDecimal salario;
 	
-	public Long getId() {
-		return id;
+	@Enumerated(EnumType.STRING)
+	private EnumStatus status;
+	
+	public EnumStatus getStatus() {
+		return status;
 	}
 
 	public String getDocumento() {
@@ -61,6 +66,11 @@ public class NovaProposta {
 	public BigDecimal getSalario() {
 		return salario;
 	}
+		
+		public Long getIdProposta() {
+		return idProposta;
+	}
+		
 
 	public NovaProposta(@NotBlank String documento, @Email @NotBlank String email, @NotBlank String nome,
 			@NotBlank String endereco, @NotNull BigDecimal salario) {
@@ -72,8 +82,15 @@ public class NovaProposta {
 		this.salario = salario;
 	}
 
+	public NovaProposta() {}
+		
 	@Override
 	public String toString() {
-		return "Proposta: [id= " + id + ",documento=" + documento + ",email=" + email + ",nome=" + nome + ",endereco=" + endereco + ", salario=" + salario + "]";
+		return "Proposta: [id= " + idProposta + ",documento=" + documento + ",nome=" + nome + ",email=" + email +"]";// ",endereco=" + endereco + ", salario=" + salario + 
 	}
-}
+
+	public void atualizaStatus(EnumStatus status) {
+		this.status = status;
+	}	
+		
+		}

@@ -3,6 +3,8 @@ package br.com.zup.academy.tania.proposta.NovaProposta;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -38,8 +40,35 @@ public class NovaPropostaRequest {
 	@NotNull
 	@Positive
 	private BigDecimal salario;
+
+	@Enumerated(EnumType.STRING)
+	private EnumStatus status;
+		
 	
-	
+	public String getDocumento() {
+		return documento;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public BigDecimal getSalario() {
+		return salario;
+	}
+
+	public EnumStatus getStatus() {
+		return status;
+	}
+
 	public NovaPropostaRequest(@NotBlank String documento, @NotBlank String email, @NotBlank String nome,
 			@NotBlank String endereco, @NotNull BigDecimal salario) {
 
@@ -53,4 +82,5 @@ public class NovaPropostaRequest {
 	public NovaProposta toModel() {
 		return new NovaProposta(this.documento,this.email, this.nome, this.endereco, this.salario);
 	}
+
 }
