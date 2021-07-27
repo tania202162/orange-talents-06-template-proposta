@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Optional;
 
+	@Controller	
 	@RestController
 	public class NovaPropostaController {
 		
@@ -48,7 +50,7 @@ import java.util.Optional;
 		NovaProposta novaProposta = request.toModel();
 		novaPropostaRepository.save(novaProposta);
 		//manager.persist(novaProposta);
-	
+
 		
 		try {
 			analiseClient.consulta(new AnaliseClient.ConsultaStatusRequest(novaProposta));
