@@ -27,11 +27,14 @@ import java.util.Optional;
 	private final Logger logger = LoggerFactory.getLogger(NovaProposta.class);	
 	private AnaliseClient analiseClient;
 	private NovaPropostaRepository novaPropostaRepository;
+	private final VinculaCartaoProposta cartaoProposta;
 	
 	@Autowired 
-	public NovaPropostaController(AnaliseClient analiseClient,NovaPropostaRepository novaPropostaRepository ) {
+	public NovaPropostaController(AnaliseClient analiseClient,NovaPropostaRepository novaPropostaRepository,
+			VinculaCartaoProposta cartaoProposta)   {
 		this.analiseClient = analiseClient;
 		this.novaPropostaRepository = novaPropostaRepository;
+		this.cartaoProposta = cartaoProposta;
 	}
 	
 	@PersistenceContext
@@ -60,6 +63,8 @@ import java.util.Optional;
 		}
 		
 		novaPropostaRepository.save(novaProposta);
+		cartaoProposta.vinculaCartaoProposta();
+		
 		URI location = uriBuilder.path("/api/proposta/{id}").buildAndExpand(novaProposta.getIdProposta()).toUri();
 
 		logger.info("Proposta documento={} salário={} criada com sucesso!", novaProposta.getDocumento(),novaProposta.getSalario());

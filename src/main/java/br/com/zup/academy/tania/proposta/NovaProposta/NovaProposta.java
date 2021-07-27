@@ -2,6 +2,7 @@ package br.com.zup.academy.tania.proposta.NovaProposta;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,9 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import br.com.zup.academy.tania.proposta.Cartao.Cartao;
+import br.com.zup.academy.tania.proposta.NovaProposta.CartaoClient.ConsultaCartaoResponse;
 
 @Entity
 public class NovaProposta {
@@ -43,6 +48,11 @@ public class NovaProposta {
 	@Enumerated(EnumType.STRING)
 	private EnumStatus status;
 	
+	private String idCartao;
+
+	@OneToOne(mappedBy = "proposta", cascade = CascadeType.ALL)
+	private Cartao cartao;	
+	
 	public EnumStatus getStatus() {
 		return status;
 	}
@@ -71,6 +81,14 @@ public class NovaProposta {
 		return idProposta;
 	}
 		
+		public String getIdCartao() {
+			return idCartao;
+		}
+
+		public Cartao getCartao() {
+			return cartao;
+		}	
+		
 
 	public NovaProposta(@NotBlank String documento, @Email @NotBlank String email, @NotBlank String nome,
 			@NotBlank String endereco, @NotNull BigDecimal salario) {
@@ -86,11 +104,16 @@ public class NovaProposta {
 		
 	@Override
 	public String toString() {
-		return "Proposta: [id= " + idProposta + ",documento=" + documento + ",nome=" + nome + ",email=" + email +"]";// ",endereco=" + endereco + ", salario=" + salario + 
+		return "Proposta: [id=" + idProposta + ", documento=" + documento + ", email=" + email + ", nome=" + nome + ", salario=" + salario + ", endereco=" + endereco + ", status=" + status + ", idCartao=" + idCartao + ", cartao=" + cartao + "]";
 	}
 
 	public void atualizaStatus(EnumStatus status) {
 		this.status = status;
-	}	
-		
+	}
+
+	public void vincularCartao(ConsultaCartaoResponse response) {
+		this.cartao = new Cartao(response, this);
+		this.idCartao = response.getId();
+	}
+			
 		}

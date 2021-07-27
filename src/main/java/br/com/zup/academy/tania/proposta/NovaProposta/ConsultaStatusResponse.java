@@ -10,8 +10,27 @@ public class ConsultaStatusResponse {
 	private String idProposta;
 	@Enumerated(EnumType.STRING)
 	private EnumStatus status;
-
 	
+
+public String getNome() {
+		return nome;
+	}
+
+
+	public String getDocumento() {
+		return documento;
+	}
+
+
+	public String getIdProposta() {
+		return idProposta;
+	}
+
+
+	public EnumStatus getStatus() {
+		return status;
+	}
+
 
 public ConsultaStatusResponse(String nome, String documento, String idProposta, EnumStatus status) {
 

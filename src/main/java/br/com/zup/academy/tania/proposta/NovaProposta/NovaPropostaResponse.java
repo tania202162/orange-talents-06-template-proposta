@@ -14,7 +14,11 @@ public class NovaPropostaResponse {
 	private String endereco;
 	@Enumerated(EnumType.STRING)
 	private EnumStatus status;
+	private String idProposta;
+	private String idCartao;
 	
+	
+
 	public NovaPropostaResponse(NovaProposta novaProposta) {
 		this.documento = novaProposta.getDocumento();
 		this.email = novaProposta.getEmail();
@@ -22,6 +26,7 @@ public class NovaPropostaResponse {
 		this.salario = novaProposta.getSalario();
 		this.endereco = novaProposta.getEndereco();
 		this.status = novaProposta.getStatus();
+		this.idCartao = novaProposta.getIdCartao();
 	}
 
 	public String getDocumento() {
@@ -47,4 +52,12 @@ public class NovaPropostaResponse {
 	public EnumStatus getStatus() {
 		return status;
 	}
+	public String getIdProposta() {
+		return idProposta;
+	}
+
+	public String getIdCartao() {
+		return idCartao;
+	}
+	
 }
