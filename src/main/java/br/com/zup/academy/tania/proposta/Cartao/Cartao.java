@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import br.com.zup.academy.tania.proposta.NovaProposta.NovaProposta;
 import br.com.zup.academy.tania.proposta.NovaProposta.CartaoClient.ConsultaCartaoResponse;
 
-
 @Entity
 @Table(name = "cartao")
 public class Cartao {
@@ -83,5 +82,4 @@ public class Cartao {
 	public void atualizaStatusCartao(EnumStatusCartao statusCartao) {
 		this.statusCartao = statusCartao;
 	}
-		
 	}

@@ -12,7 +12,6 @@ public interface CartaoClient {
 
 	@GetMapping()
 	ConsultaCartaoResponse consulta(@RequestParam String idProposta);
-
 	
 	class ConsultaCartaoResponse {
 		private String id;
@@ -50,7 +49,5 @@ public interface CartaoClient {
 		public BigDecimal getLimite() {
 			return limite;
 		}
-		
 	}
-
 }

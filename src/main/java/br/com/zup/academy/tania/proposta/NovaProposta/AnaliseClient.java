@@ -25,18 +25,14 @@ public interface AnaliseClient {
 			this.nome = novaProposta.getNome();
 			this.idProposta = novaProposta.getIdProposta();
 		}
-
 		public String getDocumento() {
 			return documento;
 		}
-
 		public String getNome() {
 			return nome;
 		}
-
 		public Long getIdProposta() {
 			return idProposta;
 		}
-
 	}
 }

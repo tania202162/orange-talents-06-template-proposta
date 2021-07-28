@@ -88,7 +88,6 @@ public class NovaProposta {
 		public Cartao getCartao() {
 			return cartao;
 		}	
-		
 
 	public NovaProposta(@NotBlank String documento, @Email @NotBlank String email, @NotBlank String nome,
 			@NotBlank String endereco, @NotNull BigDecimal salario) {
@@ -115,5 +114,4 @@ public class NovaProposta {
 		this.cartao = new Cartao(response, this);
 		this.idCartao = response.getId();
 	}
-			
-		}
+	}
