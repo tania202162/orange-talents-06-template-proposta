@@ -50,11 +50,12 @@ public class NovaPropostaController {
 
 		NovaProposta novaProposta = request.toModel();
 		novaPropostaRepository.save(novaProposta);
-		// manager.persist(novaProposta);
+		//manager.persist(novaProposta);
 
 		try {
 			analiseClient.consulta(new AnaliseClient.ConsultaStatusRequest(novaProposta));
 			novaProposta.atualizaStatus(EnumStatus.ELEGIVEL);
+			
 		} catch (FeignException.UnprocessableEntity ex) {
 			novaProposta.atualizaStatus(EnumStatus.NAO_ELEGIVEL);
 		}

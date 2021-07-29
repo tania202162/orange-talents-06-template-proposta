@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import br.com.zup.academy.tania.proposta.Cartao.Cartao;
+
 public class NovaPropostaResponse {
 	
 	private String documento;
@@ -14,12 +16,18 @@ public class NovaPropostaResponse {
 	private String endereco;
 	@Enumerated(EnumType.STRING)
 	private EnumStatus status;
-	private String idProposta;
+	private Long idProposta;
 	private String idCartao;
 	
+	private Cartao cartao;
 	
+	
+	public Long getIdProposta() {
+		return idProposta;
+	}
 
 	public NovaPropostaResponse(NovaProposta novaProposta) {
+		this.idProposta = novaProposta.getIdProposta();
 		this.documento = novaProposta.getDocumento();
 		this.email = novaProposta.getEmail();
 		this.nome = novaProposta.getNome();
@@ -27,6 +35,10 @@ public class NovaPropostaResponse {
 		this.endereco = novaProposta.getEndereco();
 		this.status = novaProposta.getStatus();
 		this.idCartao = novaProposta.getIdCartao();
+		}
+
+	public Cartao getCartao() {
+		return cartao;
 	}
 
 	public String getDocumento() {
@@ -52,10 +64,7 @@ public class NovaPropostaResponse {
 	public EnumStatus getStatus() {
 		return status;
 	}
-	public String getIdProposta() {
-		return idProposta;
-	}
-
+	
 	public String getIdCartao() {
 		return idCartao;
 	}

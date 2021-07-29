@@ -89,14 +89,18 @@ public class NovaProposta {
 			return cartao;
 		}	
 
-	public NovaProposta(@NotBlank String documento, @Email @NotBlank String email, @NotBlank String nome,
-			@NotBlank String endereco, @NotNull BigDecimal salario) {
+	public NovaProposta(Long idProposta,@NotBlank String documento, @Email @NotBlank String email, @NotBlank String nome,
+			@NotBlank String endereco, @NotNull BigDecimal salario,EnumStatus status,String idCartao) {
 		
+		this.idProposta = idProposta;
 		this.documento = documento;
 		this.email = email;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.salario = salario;
+		this.status = status;
+		this.idCartao = idCartao;
+		
 	}
 
 	public NovaProposta() {}
@@ -113,5 +117,6 @@ public class NovaProposta {
 	public void vincularCartao(ConsultaCartaoResponse response) {
 		this.cartao = new Cartao(response, this);
 		this.idCartao = response.getId();
+			
 	}
 	}

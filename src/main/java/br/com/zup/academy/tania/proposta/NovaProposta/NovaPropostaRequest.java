@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,6 +18,10 @@ import br.com.zup.academy.tania.proposta.Validator.ValidaCpfCnpj;
 
 
 public class NovaPropostaRequest {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idProposta;
 	
 	@Column(nullable = false)
 	@NotBlank
@@ -43,6 +50,8 @@ public class NovaPropostaRequest {
 
 	@Enumerated(EnumType.STRING)
 	private EnumStatus status;
+	
+	private String idCartao;
 		
 	
 	public String getDocumento() {
@@ -69,18 +78,21 @@ public class NovaPropostaRequest {
 		return status;
 	}
 
-	public NovaPropostaRequest(@NotBlank String documento, @NotBlank String email, @NotBlank String nome,
-			@NotBlank String endereco, @NotNull BigDecimal salario) {
+	public NovaPropostaRequest( Long idProposta, @NotBlank String documento, @NotBlank String email, @NotBlank String nome,
+			@NotBlank String endereco, @NotNull BigDecimal salario,EnumStatus status,String idCartao) {
 
+		this.idProposta = idProposta;
 		this.documento = documento;
 		this.email = email;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.salario = salario;
+		this.status = status;
+		this.idCartao = idCartao;
+		
 	}
 
 	public NovaProposta toModel() {
-		return new NovaProposta(this.documento,this.email, this.nome, this.endereco, this.salario);
+		return new NovaProposta(this.idProposta,this.documento,this.email, this.nome, this.endereco, this.salario, this.status, this.idCartao);
 	}
-
 }

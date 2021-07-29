@@ -14,7 +14,7 @@ import feign.FeignException;
 public class VinculaCartaoProposta {
 
 	private CartaoClient cartaoClient;
-
+	
 	private NovaPropostaRepository propostaRepository;
 
 	public VinculaCartaoProposta(CartaoClient cartaoClient, NovaPropostaRepository propostaRepository) {
@@ -29,13 +29,13 @@ public class VinculaCartaoProposta {
 		List<NovaProposta> lista = propostaRepository.findByStatusAndCartaoNull(EnumStatus.ELEGIVEL);
 		for (NovaProposta proposta : lista) {
 			try {
-										
+								
 				ConsultaCartaoResponse resposta = cartaoClient.consulta(proposta.getIdProposta().toString());
-
+				
 				if (resposta.getId() != null) {
 					proposta.vincularCartao(resposta);
 					propostaRepository.save(proposta);
-
+					
 				}
 			} catch (FeignException.InternalServerError e) {
 				System.out.println("Cartão não existente para a proposta" + proposta.getIdProposta());
