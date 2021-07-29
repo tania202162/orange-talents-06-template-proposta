@@ -75,6 +75,10 @@ public class Cartao {
 		return limite;
 	}
 
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 	public EnumStatusCartao getStatusCartao() {
 		return statusCartao;
 	}
