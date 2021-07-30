@@ -1,16 +1,20 @@
 package br.com.zup.academy.tania.proposta.Cartao;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+import br.com.zup.academy.tania.proposta.Biometria.Biometria;
 import br.com.zup.academy.tania.proposta.NovaProposta.NovaProposta;
 import br.com.zup.academy.tania.proposta.NovaProposta.CartaoClient.ConsultaCartaoResponse;
 
@@ -35,6 +39,9 @@ public class Cartao {
 
 	@Enumerated(EnumType.STRING)
 	private EnumStatusCartao statusCartao;
+	
+	@OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+	private List<Biometria> biometrias = new ArrayList<>();
 
 	@Deprecated
 	public Cartao() {
