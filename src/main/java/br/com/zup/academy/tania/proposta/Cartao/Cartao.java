@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import br.com.zup.academy.tania.proposta.Biometria.Biometria;
+import br.com.zup.academy.tania.proposta.Bloqueio.BloqueioCartao;
 import br.com.zup.academy.tania.proposta.NovaProposta.NovaProposta;
 import br.com.zup.academy.tania.proposta.NovaProposta.CartaoClient.ConsultaCartaoResponse;
 
@@ -42,6 +43,9 @@ public class Cartao {
 	
 	@OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
 	private List<Biometria> biometrias = new ArrayList<>();
+	
+	@OneToOne(mappedBy = "cartao", cascade = CascadeType.ALL)
+	private BloqueioCartao bloqueio;
 
 	@Deprecated
 	public Cartao() {
