@@ -7,5 +7,4 @@ public class BloqueioCartaoResponse {
 	public String getResultado() {
 		return resultado;
 	}
-
 }

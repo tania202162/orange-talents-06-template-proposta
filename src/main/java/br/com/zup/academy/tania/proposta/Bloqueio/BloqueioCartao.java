@@ -1,6 +1,5 @@
 package br.com.zup.academy.tania.proposta.Bloqueio;
 import java.time.LocalDateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

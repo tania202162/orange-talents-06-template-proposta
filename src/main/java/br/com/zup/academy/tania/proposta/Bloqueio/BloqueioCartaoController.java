@@ -37,7 +37,7 @@ public class BloqueioCartaoController {
 
 	private final Logger logger = LoggerFactory.getLogger(BloqueioCartao.class);
 
-	@PostMapping("/api/cartoes/{id}/bloqueios")
+	@PostMapping("/cartoes/{id}/bloqueios")
 	public ResponseEntity<?> bloqueio(@PathVariable Long id, HttpServletRequest request) {
 
 		Optional<Cartao> cartao = cartaoRepository.findById(id);
