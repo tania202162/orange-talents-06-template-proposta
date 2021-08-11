@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "analiseCliente", url = "http://localhost:9999")
 public interface AnaliseClient {
-
+	
 	@PostMapping("/api/solicitacao")
 	ConsultaStatusResponse consulta(@RequestBody ConsultaStatusRequest consultaStatusRequest);
 
