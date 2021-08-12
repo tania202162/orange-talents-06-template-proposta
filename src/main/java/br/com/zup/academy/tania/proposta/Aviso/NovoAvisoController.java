@@ -76,8 +76,6 @@ public class NovoAvisoController {
 			logger.info("Aviso realizado para o cartao={}!", cartao.get().getNumero());
 			return ResponseEntity.ok().build();
 		}
-
-		return ResponseEntity.notFound().build();
+  		    return ResponseEntity.notFound().build();
 	}
-
 }

@@ -1,7 +1,6 @@
 package br.com.zup.academy.tania.proposta.Aviso;
 
 import java.time.LocalDate;
-
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 
