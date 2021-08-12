@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,6 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import br.com.zup.academy.tania.proposta.Cartao.Cartao;
 import br.com.zup.academy.tania.proposta.NovaProposta.CartaoClient.ConsultaCartaoResponse;
+import br.com.zup.academy.tania.proposta.Security.CriptografiaConverter;
+
 
 @Entity
 public class NovaProposta {
@@ -29,8 +32,10 @@ public class NovaProposta {
 	@NotBlank
 	private String documento; // cpf/cnpj
 
-	@Column(nullable = false)
+	@Email
 	@NotBlank
+	@Column(unique = true)
+	@Convert(converter = CriptografiaConverter.class)
 	private String email;
 
 	@NotBlank
