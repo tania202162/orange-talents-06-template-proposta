@@ -62,8 +62,7 @@ public class NovaPropostaController {
 
 		novaPropostaRepository.save(novaProposta);
 		cartaoProposta.vinculaCartaoProposta();
-		
-
+	
 		URI location = uriBuilder.path("/api/proposta/{id}").buildAndExpand(novaProposta.getIdProposta()).toUri();
 
 		logger.info("Proposta documento={} salário={} criada com sucesso!", novaProposta.getDocumento(),
