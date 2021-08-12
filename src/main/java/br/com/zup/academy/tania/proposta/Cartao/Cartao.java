@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import br.com.zup.academy.tania.proposta.Aviso.Aviso;
 import br.com.zup.academy.tania.proposta.Biometria.Biometria;
 import br.com.zup.academy.tania.proposta.Bloqueio.BloqueioCartao;
+import br.com.zup.academy.tania.proposta.Carteira.Carteira;
 import br.com.zup.academy.tania.proposta.NovaProposta.NovaProposta;
 import br.com.zup.academy.tania.proposta.NovaProposta.CartaoClient.ConsultaCartaoResponse;
 
@@ -51,6 +52,9 @@ public class Cartao {
 
 	@OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
 	private List<Aviso> avisoViagem = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+	private List<Carteira> carteiras = new ArrayList<>();
 	
 	@Deprecated
 	public Cartao() {
@@ -106,4 +110,7 @@ public class Cartao {
 	public void atualizaAviso(Aviso aviso) {
 		this.avisoViagem.add(aviso);
 	}
+	public void adicionaCarteiraDigital(Carteira carteiraDigital) {
+		this.carteiras.add(carteiraDigital);
 	}
+}
