@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.zup.academy.tania.proposta.Aviso.NovoAvisoRequest;
 import br.com.zup.academy.tania.proposta.Bloqueio.BloqueioCartaoRequest;
 
 @FeignClient(name = "cartaoCliente", url = "${cartoes.host}")
@@ -19,6 +20,9 @@ public interface CartaoClient {
 	
 	@PostMapping(value = "{id}/bloqueios")
 	void bloqueio(@PathVariable String id, BloqueioCartaoRequest bloqueioCartaoRequest);
+	
+	@PostMapping(value = "{id}/avisos")
+	void aviso(@PathVariable String id, NovoAvisoRequest novoAvisoRequest);
 	
 	class ConsultaCartaoResponse {
 		private String id;

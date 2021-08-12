@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.zup.academy.tania.proposta.Aviso.Aviso;
 import br.com.zup.academy.tania.proposta.Biometria.Biometria;
 import br.com.zup.academy.tania.proposta.Bloqueio.BloqueioCartao;
 import br.com.zup.academy.tania.proposta.NovaProposta.NovaProposta;
@@ -47,6 +49,9 @@ public class Cartao {
 	@OneToOne(mappedBy = "cartao", cascade = CascadeType.ALL)
 	private BloqueioCartao bloqueio;
 
+	@OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+	private List<Aviso> avisoViagem = new ArrayList<>();
+	
 	@Deprecated
 	public Cartao() {
 	}
@@ -96,5 +101,9 @@ public class Cartao {
 
 	public void atualizaStatusCartao(EnumStatusCartao statusCartao) {
 		this.statusCartao = statusCartao;
+	}
+	
+	public void atualizaAviso(Aviso aviso) {
+		this.avisoViagem.add(aviso);
 	}
 	}
