@@ -64,5 +64,4 @@ import br.com.zup.academy.tania.proposta.Cartao.Cartao;
 		public String toString() {
 			return "Carteira [cartao=" + cartao + ", email=" + email + ", enumCarteira=" + enumCarteira + "]";
 		}
-
 	}

@@ -1,6 +1,8 @@
 package br.com.zup.academy.tania.proposta.Carteira;
 
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +25,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-
 	@RestController
 	@RequestMapping("/api/cartoes")
 	public class NovaCarteiraController {
@@ -36,14 +36,17 @@ import org.slf4j.Logger;
 
 		private final Logger logger = LoggerFactory.getLogger(Carteira.class);
 
-		public NovaCarteiraController(CarteiraRepository carteiraRepository, CartaoRepository cartaoRepository,
-				BloqueioCartaoRepository bloqueioCartaoRepository, CartaoClient cartaoClient) {
+		@Autowired
+		public NovaCarteiraController(
+				CarteiraRepository carteiraRepository, 
+				CartaoRepository cartaoRepository,
+				BloqueioCartaoRepository bloqueioCartaoRepository, 
+				CartaoClient cartaoClient) {
 
 			this.carteiraRepository = carteiraRepository;
 			this.cartaoRepository = cartaoRepository;
 			this.bloqueioCartaoRepository = bloqueioCartaoRepository;
 			this.cartaoClient = cartaoClient;
-
 		}
 
 		@PostMapping("/{id}/carteiras")
@@ -73,7 +76,8 @@ import org.slf4j.Logger;
 					cartao.get().adicionaCarteiraDigital(carteira);
 					carteiraRepository.save(carteira);
 
-					URI location = uriBuilder.path("/cartoes/{id}/carteiras/{id}").build(cartao.get().getId(),
+					URI location = uriBuilder.path("/cartoes/{id}/carteiras/{id}")
+							.build(cartao.get().getId(),
 							carteira.getId());
 
 					logger.info("Carteira={} digital criada com sucesso para o email={}!", carteira.getEnumCarteira(),
@@ -86,9 +90,7 @@ import org.slf4j.Logger;
 					badRequest.put("Algum processo interno foi violado", badRequest);
 					return ResponseEntity.unprocessableEntity().body(badRequest);
 				}
-
 			}
 			return ResponseEntity.notFound().build();
-
 		}
 	}

@@ -100,7 +100,6 @@ public class NovaProposta {
 		this.salario = salario;
 		this.status = status;
 		this.idCartao = idCartao;
-		
 	}
 
 	public NovaProposta() {}

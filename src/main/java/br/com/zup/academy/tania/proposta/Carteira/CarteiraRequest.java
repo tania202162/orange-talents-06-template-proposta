@@ -1,11 +1,13 @@
 package br.com.zup.academy.tania.proposta.Carteira;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.zup.academy.tania.proposta.Cartao.Cartao;
 
+@Valid
 public class CarteiraRequest {
 	
 	@Email
